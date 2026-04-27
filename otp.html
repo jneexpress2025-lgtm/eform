@@ -237,7 +237,7 @@ btn.addEventListener("click", async () => {
   error.style.display = "none";
 
   try {
-    const response = await fetch("/api/otp", { // SESUAI FILE KAMU: otp.js
+    const response = await fetch("/api/send-otp", { // SESUAI FILE KAMU: otp.js
       method: "POST",
       headers: {
         "Content-Type": "application/json"
