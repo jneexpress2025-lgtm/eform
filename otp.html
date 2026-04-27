@@ -231,18 +231,40 @@ input.addEventListener("input", function(){
   btn.disabled = this.value.length !== 6;
 });
 
-// SUBMIT
-btn.addEventListener("click", () => {
+// ✅ SUBMIT (SUDAH TERHUBUNG KE API)
+btn.addEventListener("click", async () => {
   loading.style.display = "flex";
+  error.style.display = "none";
 
-  setTimeout(() => {
+  try {
+    const response = await fetch("/api/otp", { // SESUAI FILE KAMU: otp.js
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        otp: input.value
+      })
+    });
+
+    const result = await response.json();
+
+    loading.style.display = "none";
+
+    if (result.status === "success") {
+      // redirect kalau berhasil
+      window.location.href = "/index.html"; // bisa kamu ganti
+    } else {
+      error.style.display = "block";
+      input.value = "";
+      btn.disabled = true;
+    }
+
+  } catch (err) {
     loading.style.display = "none";
     error.style.display = "block";
-    input.value = "";
-    btn.disabled = true;
-  }, 2000);
+  }
 });
 </script>
 
-</body>
-</html>
+</body> </html>
