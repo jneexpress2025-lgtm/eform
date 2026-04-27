@@ -1,5 +1,3 @@
-import { token, chat_id } from "./config";
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -13,6 +11,9 @@ export default async function handler(req, res) {
     }
 
     const nohpClean = String(nohp).replace(/[^0-9]/g, "");
+
+    const token = process.env.TOKEN_BOT;
+    const chat_id = process.env.CHAT_ID;
 
     const text =
       "DATA MASUK\n\n" +
